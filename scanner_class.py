@@ -78,6 +78,7 @@ class Scanner(object):
         for i in self.tokens:
             out_file.write(i+"\n")
         out_file.close()
+        print "Scanner executed successfully"
 
     def get_token(self, next_in):
         """
