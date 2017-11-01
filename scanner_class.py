@@ -64,14 +64,20 @@ class Scanner(object):
         """
         # read input text
         in_file = open(in_file_dir)
-        lines = in_file.read().replace("\n", " ")
+        # initially we start at the 1st line
+        current_line = 1
+        for line in in_file.readlines():
+            line = line + " "
+            end = len(line[:-1])-1
+            while self.stream_pos <= end:
+                self.get_token(line[self.stream_pos])
+            self.stream_pos = 0
+            if self.state < 0:
+                break
+            current_line += 1
         in_file.close()
-        end = len(lines)-1
-        while self.state >= 1 and self.stream_pos <= end:
-            #print self.stream_pos, end
-            self.get_token(lines[self.stream_pos])
         if self.state < 0:
-            print "ERROR IN YOUR CODE"
+            print "ERROR IN YOUR CODE AT LINE : ", current_line
             return
         # store the results
         out_file = open(out_file_dir, 'w')
@@ -103,7 +109,7 @@ class Scanner(object):
                 self.current_token_val = next_in
                 self.current_token_type = ": special symbol"
                 self.state = 6
-            elif next_in != " ":
+            elif next_in != " " and next_in != "\n":
                 #error
                 self.state = -1
         elif self.state == 2:
