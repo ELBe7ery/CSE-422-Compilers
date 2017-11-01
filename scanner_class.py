@@ -67,7 +67,7 @@ class Scanner(object):
         lines = in_file.read().replace("\n", " ")
         in_file.close()
         end = len(lines)-1
-        while self.state >= 1 and self.stream_pos < end:
+        while self.state >= 1 and self.stream_pos <= end:
             #print self.stream_pos, end
             self.get_token(lines[self.stream_pos])
         if self.state < 0:
