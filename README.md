@@ -1,8 +1,4 @@
 # Compiler Assignment - 1 Scanner
-## Name: Abdelrahman Mohamed Abdelhamid Ali Elbehery
-## Section : 2
-## ID : 1300759
-
 --- 
 <!-- TOC -->
 
